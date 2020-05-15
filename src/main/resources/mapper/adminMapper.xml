@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.AdminDao">
+    <select id="selectAll" resultType="com.entity.Admin">
+        select * from admin;
+    </select>
+    <select id="selectByAccountAndPwd" resultType="com.entity.Admin">
+        select * from admin where account=#{account} and passwd=#{pwd};
+    </select>
+    <select id="selectById" resultType="com.entity.Admin">
+        select * from admin where id=#{id};
+    </select>
+    <select id="selectByPage" resultType="com.entity.Admin">
+        select * from admin limit #{begin},#{size};
+    </select>
+    <insert id="insert" parameterType="com.entity.Admin">
+        insert into admin values(null,#{account},#{passwd},#{name},#{time},1);
+    </insert>
+    <update id="update" parameterType="com.entity.Admin">
+        update admin set account=#{account},passwd=#{passwd},name=#{name},time=#{time} where id=#{id};
+    </update>
+    <delete id="delete">
+        delete from admin where id=#{id};
+    </delete>
+</mapper>

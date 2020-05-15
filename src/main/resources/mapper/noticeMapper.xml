@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.NoticeDao">
+
+    <resultMap id="notice" type="com.entity.Notice" autoMapping="true">
+        <association property="person" javaType="com.entity.Admin">
+            <id column="aid" property="id"/>
+            <result column="aaccount" property="account"/>
+            <result column="apasswd" property="passwd"/>
+            <result column="aname" property="name"/>
+            <result column="atime" property="time"/>
+            <result column="astatus" property="status"/>
+        </association>
+    </resultMap>
+    <sql id="n">
+        select n.*,a.id as aid,a.account as aaccount,a.passwd as apasswd,a.name as aname,a.time as atime,a.status as astatus
+        from notice n left join admin a on n.person=a.id
+    </sql>
+    <select id="selectAll" resultMap="notice">
+        <include refid="n"></include>
+        where n.status=1;
+    </select>
+    <select id="selectById" resultMap="notice">
+        <include refid="n"></include>
+        where n.id=#{id} and n.status=1;
+    </select>
+    <select id="selectByPage" resultMap="notice">
+        <include refid="n"></include>
+        where n.status=1 limit #{begin},#{size};
+    </select>
+    <insert id="insert" parameterType="com.entity.Notice">
+        insert into notice values(null,#{name},#{content},#{time},#{person.id},1);
+    </insert>
+    <update id="update" parameterType="com.entity.Notice">
+        update notice set name=#{name},content=#{content},time=#{time},person=#{person.id} where id=#{id};
+    </update>
+    <update id="delete" parameterType="com.entity.Notice">
+        update notice set status=2 where id=#{id};
+    </update>
+</mapper>

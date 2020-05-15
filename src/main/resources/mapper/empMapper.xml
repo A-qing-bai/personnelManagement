@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.EmpDao">
+
+    <resultMap id="emp" type="com.entity.Emp" autoMapping="true">
+        <association property="job" javaType="com.entity.Job">
+            <id column="jid" property="id"/>
+            <result column="jname" property="name"/>
+            <result column="jdetails" property="details"/>
+            <result column="jstatus" property="status"/>
+        </association>
+        <association property="dept" javaType="com.entity.Dept">
+            <id column="did" property="id"/>
+            <result column="dname" property="name"/>
+            <result column="ddetails" property="details"/>
+            <result column="dstatus" property="status"/>
+        </association>
+    </resultMap>
+    <sql id="e">
+        select e.*,
+        j.id as jid,j.name as jname,j.details as jdetails,j.status as jstatus,
+        d.id as did,d.name as dname,d.details as ddetails,d.status as dstatus
+        from emp e
+        inner join job j on e.job=j.id
+        inner join dept d on e.dept=d.id
+    </sql>
+    <select id="selectAll" resultMap="emp">
+        <include refid="e"/>
+        where e.status=1;
+    </select>
+    <select id="selectById" resultMap="emp">
+        <include refid="e"/>
+        where e.id=#{id} and e.status=1;
+    </select>
+    <select id="selectByPage" resultMap="emp">
+        <include refid="e"/>
+        where e.status=1 limit #{begin},#{size};
+    </select>
+    <insert id="insert" parameterType="com.entity.Emp">
+        insert into emp values(null,#{name},#{sex},#{phone},#{email},#{job.id},#{education},#{card},#{dept.id},#{address},#{time},1);
+    </insert>
+    <insert id="inserts">
+        insert into emp values
+        <foreach collection="list" item="p" separator=",">
+            (null,#{p.name},#{p.sex},#{p.phone},#{p.email},#{p.job.id},#{p.education},#{p.card},#{p.dept.id},#{p.address},#{p.time},1)
+        </foreach>
+    </insert>
+    <update id="update" parameterType="com.entity.Emp">
+        update emp set name=#{name},sex=#{sex},phone=#{phone},email=#{email},job=#{job.id},education=#{education},card=#{card},dept=#{dept.id},address=#{address},time=#{time} where id=#{id};
+    </update>
+    <update id="delete" parameterType="com.entity.Emp">
+        update emp set status=2 where id=#{id};
+    </update>
+</mapper>

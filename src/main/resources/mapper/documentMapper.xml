@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.DocumentDao">
+    <select id="selectAll" resultType="com.entity.Document">
+        select * from document where status=1;
+    </select>
+    <select id="selectById" resultType="com.entity.Document">
+        select * from document where id=#{id} and status=1;
+    </select>
+    <select id="selectByPage" resultType="com.entity.Document">
+        select * from document where status=1 limit #{begin},#{size};
+    </select>
+    <insert id="insert" parameterType="com.entity.Document">
+        insert into document values(null,#{title},#{time},#{person},#{path},#{ms},1);
+    </insert>
+    <update id="update" parameterType="com.entity.Document">
+        update document set title=#{title},time=#{time},person=#{person},path=#{path},ms=#{ms} where id=#{id};
+    </update>
+    <update id="delete" parameterType="com.entity.Document">
+        update document set status=2 where id=#{id};
+    </update>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.DeptDao">
+    <select id="selectAll" resultType="com.entity.Dept">
+        select * from dept where status=1;
+    </select>
+    <select id="selectById" resultType="com.entity.Dept">
+        select * from dept where id=#{id} and status=1;
+    </select>
+    <select id="selectByPage" resultType="com.entity.Dept">
+        select * from dept where status=1 limit #{begin},#{size};
+    </select>
+    <insert id="insert" parameterType="com.entity.Dept">
+        insert into dept values(null,#{name},#{details},1);
+    </insert>
+    <update id="update" parameterType="com.entity.Dept">
+        update dept set name=#{name},details=#{details} where id=#{id};
+    </update>
+    <update id="delete" parameterType="com.entity.Dept">
+        update dept set status=2 where id=#{id};
+    </update>
+</mapper>
