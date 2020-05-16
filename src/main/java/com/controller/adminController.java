@@ -4,12 +4,14 @@ import com.dao.AdminDao;
 import com.entity.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+@SessionAttributes("admin")
 @Controller
 public class adminController {
     @Autowired
@@ -18,19 +20,22 @@ public class adminController {
     @RequestMapping(value = "/admin/login/{name}&{pwd}")
     ModelAndView login(@PathVariable String name, @PathVariable String pwd) {
         Admin a = adminDao.selectByAccountAndPwd(name,pwd);
-        System.out.println(a);
+
         ModelAndView mv = new ModelAndView();
         mv.addObject("admin",a);
         mv.setViewName("index");
         return mv;
     }
 
-    @RequestMapping(value = "/admin")
-    String select() {
+    @RequestMapping(value = "/admin/selectAll")
+    @ResponseBody
+    Map<String, Object> selectAll() {
+        Map<String,Object> map = new HashMap<>();
         List<Admin> list = adminDao.selectAll();
-        for (int i =0 ; i<list.size();i++){
-            System.out.println(list.get(i));
-        }
-        return "index";
+        map.put("code",0);
+        map.put("mag","");
+        map.put("count",list.size());
+        map.put("data",list);
+        return map;
     }
 }
