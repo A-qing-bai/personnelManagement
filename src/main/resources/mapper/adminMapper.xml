@@ -11,6 +11,9 @@
     <select id="selectById" resultType="com.entity.Admin">
         select * from admin where id=#{id};
     </select>
+    <select id="selectByName" resultType="com.entity.Admin">
+        select * from admin where name like #{name};
+    </select>
     <select id="selectByPage" resultType="com.entity.Admin">
         select * from admin limit #{begin},#{size};
     </select>

@@ -27,7 +27,7 @@
                     <dd><a href="javascript:;" onclick="address('user_show');">基本资料</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="login.jsp">退了</a></li>
+            <li class="layui-nav-item"><a href="/login.jsp">退了</a></li>
         </ul>
     </div>
 
@@ -38,7 +38,7 @@
                     <a href="javascript:;">用户管理</a>
                     <dl class="layui-nav-child">
                         <dd onclick="address('user_all');"><a href="javascript:;">用户查询</a></dd>
-                        <dd onclick="address('user_all');"><a href="javascript:;" onclick="">添加用户</a></dd>
+                        <dd onclick="address('user_insert');"><a href="javascript:;" onclick="">添加用户</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">

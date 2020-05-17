@@ -17,22 +17,22 @@
     <div class="layui-form-item">
         <label class="layui-form-label">账号</label>
         <div class="layui-input-block">
-            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input" value="${admin.account}" readonly>
+            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input" value="${a.account}" readonly>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">用户名</label>
         <div class="layui-input-block">
-            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input" value="${admin.name}" readonly>
+            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input" value="${a.name}" readonly>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">用户类型</label>
         <div class="layui-input-block">
-            <c:if test="${admin.status == 1}">
+            <c:if test="${a.status == 1}">
                 <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input" value="超级管理员" readonly>
             </c:if>
-            <c:if test="${admin.status != 1}">
+            <c:if test="${a.status != 1}">
                 <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input" value="管理员" readonly>
             </c:if>
         </div>
@@ -40,7 +40,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">创建日期</label>
         <div class="layui-input-block">
-            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input" value="${admin.time}" readonly>
+            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input" value="${a.time}" readonly>
         </div>
     </div>
 </form>

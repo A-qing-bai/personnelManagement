@@ -20,6 +20,7 @@
             <h2>Admin</h2>
             <p>人事管理系统</p>
         </div>
+        <form class="layui-form" action="/admin/login" method="post">
         <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
             <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"></label>
@@ -33,15 +34,10 @@
                 <button id="login" class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">登 入</button>
             </div>
         </div>
+        </form>
     </div>
 </div>
 <script src="/js/jquery-3.4.1.min.js"></script>
 <script src="/layui/layui.js"></script>
-<script>
-    $("#login").click(function () {
-        var url ="/admin/login/"+$("[name='name']").val()+"&"+$("[name='pwd']").val();
-        window.location=url;
-    })
-</script>
 </body>
 </html>

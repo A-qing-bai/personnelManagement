@@ -9,6 +9,7 @@ public interface AdminDao {
     List<Admin> selectAll();
     Admin selectByAccountAndPwd(@Param("account") String account ,@Param("pwd") String pwd);
     Admin selectById(@Param("id") Integer id);
+    List<Admin> selectByName(@Param("name") String name);
     Admin selectByPage(Integer begin , Integer size);
     int insert(Admin admin);
     int update(Admin admin);
