@@ -46,7 +46,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">创建日期</label>
         <div class="layui-input-block">
-            <input type="date" name="time" id="time" placeholder="请输入" autocomplete="off" class="layui-input" value="">
+            <input type="text" name="time" id="time" placeholder="请输入" autocomplete="off" class="layui-input" value="">
         </div>
     </div>
     <div class="layui-form-item">
@@ -65,7 +65,7 @@
         form.render();
         laydate.render({
             elem: '#time'
-            //, type: 'date'
+            , type: 'date'
         });
     });
 </script>
